@@ -1,0 +1,85 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>4.3</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body style="background: #E8F1F2">
+
+<div id = 'block1' style="text-align: center; margin-top: 10%; color: #383B53;"><h4>Пользователи с именами, начинающимися на А:</h4><br></div><br><br><br>
+<div id = 'block2' style="text-align: center; color: #383B53;"><h4>Заказы клиентов, живущих в Лондоне:</h4><br></div>
+
+
+<script>
+var users = [
+	{name : 'Ann', 
+	surname : 'Green', 
+	city : 'Moscow', 
+	id: 1234}, 
+
+	{name : 'Albert', 
+	surname : 'Brown', 
+	city : 'London',  
+	id: 1235},
+
+	{name : 'Bob', 
+	surname : 'Green', 
+	city : 'London', 
+	id: 1236}
+
+];
+
+var restaurants = {
+	dinner : {
+		id: 1, 
+		name: "Best Diner",
+		pricing: 100
+	},
+	lunch : {
+		id:2,
+		name: "Business Lunch Time", 
+		pricing: 50
+	},
+	breakfast :{
+		id: 3,
+		name: "Eggs & Coffee", 
+		pricing: 10
+	}
+};
+
+var order1 = {
+	restaurant : restaurants.dinner, 
+	user : users[1],
+	order: "Burger and Fries"
+};
+var order2 = {
+	restaurant : restaurants.breakfast, 
+	user : users[2],
+	order: "Latte"
+};
+
+
+
+for (let user of users){
+	if (user.name.charAt(0) == 'A'){
+		document.getElementById("block1").innerHTML += `<h5>${user.name} ${user.surname}<h5>`;
+	}
+};
+
+
+var check_order = function(order){
+	if (order.user.city == "London"){
+		document.getElementById("block2").innerHTML += `<h5>** <u>${order.order}</u> ** from restaurant "${order.restaurant.name}" <h5>`;
+	}
+} 
+check_order(order1);
+check_order(order2);
+
+
+</script>
+
+
+
+</body>
+</html>
