@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>3</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<!-- This setup is not suitable for production. -->
+<!-- Only use it in development! -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script async src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react?dev",
+    "react-dom/client": "https://esm.sh/react-dom/client?dev"
+  }
+}
+</script>
+<script type="text/babel" data-type="module">
+import React, { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import {useState} from 'react';
+
+export const people1 = [{
+  id: 0,
+  name: 'Исаак Ньютон',
+  profession: 'физик',
+  birthyear : 1643, 
+  deathyear : 1727, 
+  accomplishment: 'Закон всемирного тяготения',
+  imageId: 'newton'
+}, {
+  id: 1,
+  name: 'Карл Фридрих Гаусс',
+  profession: 'математик',
+  birthyear : 1777, 
+  deathyear : 1855,
+  accomplishment: ' Доказательство основной теоремы алгебры',
+  imageId: 'gauss'
+}, {
+  id: 2,
+  name: 'Ада Лавлейс',
+  profession: 'математик',
+  birthyear : 1815, 
+  deathyear : 1852,
+  accomplishment: 'Алгоритм для расчетов на механических компьютерах',
+  imageId: 'ada'
+}, {
+  id: 3,
+  name: 'Андрей Колмогоров',
+  profession: 'математик',
+  birthyear : 1903, 
+  deathyear : 1987,
+  accomplishment: 'Основатель современной вероятности и теории информации',
+  imageId: 'kolmogorov'
+}, {
+  id: 4,
+  name: 'Антуан Лоран Лавуазье',
+  profession: 'химик',
+  birthyear : 1743, 
+  deathyear : 1794,
+  accomplishment: 'Автор первой системы химических названий элементов',
+  imageId: 'lavuazie'
+} , {
+  id: 5,
+  name: 'Мария Кюри',
+  profession: 'химик',
+  birthyear : 1867, 
+  deathyear : 1934,
+  accomplishment: 'Автор термина «радиоактивность»',
+  imageId: 'curie'
+} , {
+  id: 6,
+  name: 'Дмитрий Менделеев',
+  profession: 'химик',
+  birthyear : 1834, 
+  deathyear : 1907,
+  accomplishment: 'Разработал таблицу химических элементов',
+  imageId: 'mendeleev'
+} , {
+  id: 7,
+  name: 'Луи Пастер',
+  profession: 'химик',
+  birthyear : 1822, 
+  deathyear : 1895,
+  accomplishment: 'Пастеризация, принцип вакцинации',
+  imageId: 'paster'
+}
+
+
+];
+
+function sortPeople(){
+  people.sort(function(a, b) {
+    if (a.name < b.name) {
+        return -1;
+    }
+    if (a.name > b.name) {
+        return 1;
+    }
+    return 0;
+})
+};
+
+
+export function getImageUrl(person) {
+  return (
+    person.imageId +
+    '.jpg'
+  );
+}
+
+
+let App =  function List() {
+  const [people, setPeople] = useState([{
+  id: 0,
+  name: 'Исаак Ньютон',
+  profession: 'физик',
+  birthyear : 1643, 
+  deathyear : 1727, 
+  accomplishment: 'Закон всемирного тяготения',
+  imageId: 'newton'
+}, {
+  id: 1,
+  name: 'Карл Фридрих Гаусс',
+  profession: 'математик',
+  birthyear : 1777, 
+  deathyear : 1855,
+  accomplishment: ' Доказательство основной теоремы алгебры',
+  imageId: 'gauss'
+}, {
+  id: 2,
+  name: 'Ада Лавлейс',
+  profession: 'математик',
+  birthyear : 1815, 
+  deathyear : 1852,
+  accomplishment: 'Алгоритм для расчетов на механических компьютерах',
+  imageId: 'ada'
+}, {
+  id: 3,
+  name: 'Андрей Колмогоров',
+  profession: 'математик',
+  birthyear : 1903, 
+  deathyear : 1987,
+  accomplishment: 'Основатель современной вероятности и теории информации',
+  imageId: 'kolmogorov'
+}, {
+  id: 4,
+  name: 'Антуан Лоран Лавуазье',
+  profession: 'химик',
+  birthyear : 1743, 
+  deathyear : 1794,
+  accomplishment: 'Автор первой системы химических названий элементов',
+  imageId: 'lavuazie'
+} , {
+  id: 5,
+  name: 'Мария Кюри',
+  profession: 'химик',
+  birthyear : 1867, 
+  deathyear : 1934,
+  accomplishment: 'Автор термина «радиоактивность»',
+  imageId: 'curie'
+} , {
+  id: 6,
+  name: 'Дмитрий Менделеев',
+  profession: 'химик',
+  birthyear : 1834, 
+  deathyear : 1907,
+  accomplishment: 'Разработал таблицу химических элементов',
+  imageId: 'mendeleev'
+} , {
+  id: 7,
+  name: 'Луи Пастер',
+  profession: 'химик',
+  birthyear : 1822, 
+  deathyear : 1895,
+  accomplishment: 'Пастеризация, принцип вакцинации',
+  imageId: 'paster'
+}
+]);
+
+  function handleShowChemists() {
+    setPeople(people.filter(person => person.profession === 'химик'));
+ }
+   
+ function handleShowMaths() {
+    setPeople(people1);
+    setPeople(people.filter(person => person.profession === 'математик'));
+    
+ }
+ function handleShowSorted() {
+    setPeople(people.slice().sort(
+      function(a, b) {
+          if (a.name < b.name) {
+              return -1;
+          }
+          if (a.name > b.name) {
+              return 1;
+          }
+          return 0;
+      })
+      );
+    
+ }
+
+
+  const listItems = people.map(person =>
+  <tr key={person.id}>
+    <td scope="row" ><img
+        src={getImageUrl(person)}
+        alt={person.name}
+        width={100}
+        hight={100}
+
+      /></td>
+    <th scope="row" >{person.name}</th>
+    <td scope="row" >{person.birthyear + " - " + person.deathyear}</td>
+    <td scope="row" >{person.accomplishment}</td>
+  </tr>
+  );
+  return (
+    
+    <div>
+      <button className="btn btn-dark btn-md" onClick={handleShowMaths}>
+    {"Математики"}
+        </button>
+    <button className="btn btn-dark btn-md" onClick={handleShowChemists}>
+    {"Химики"}
+      </button>
+      <button className="btn btn-dark btn-md" onClick={handleShowSorted}>
+    {"Сортировка"}
+      </button>
+   
+    <br></br><br></br>
+    <table id="1" className="table table-striped"><thead>
+  <tr>
+      <th scope="col">Фото</th>
+      <th scope="col">Имя</th>
+      <th scope="col">Годы жизни</th>
+      <th scope="col">Достижение</th>
+  </tr>
+  </thead><tbody>{listItems}</tbody></table>
+    </div>);
+}
+
+
+
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+</script>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+h4 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+h5 {
+  margin-top: 0;
+  font-size: 14px;
+}
+
+h6 {
+  margin-top: 0;
+  font-size: 12px;
+}
+
+code {
+  font-size: 1.2em;
+}
+
+ul {
+  padding-inline-start: 20px;
+}
+
+li { margin-bottom: 10px; }
+
+button {
+  margin-right: 20px;
+}
+
+
+</style>
+</html>
+
+
